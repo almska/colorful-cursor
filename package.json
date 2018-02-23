@@ -1,8 +1,8 @@
 {
   "name": "coolsor",
   "main": "./lib/coolsor",
-  "version": "2.1.0",
-  "description": "a cool breathing and hue-shifting cursor",
+  "version": "1.0.1",
+  "description": "hue-shifting cursor that gets excited about fast typing",
   "keywords": [
     "cool",
     "cursor",
