@@ -1,14 +1,17 @@
 {
-  "name": "colorful-cursor",
-  "main": "./lib/colorful-cursor",
-  "version": "0.3.1",
-  "description": "Changing cursor color when you pressed key",
+  "name": "coolsor",
+  "main": "./lib/coolsor",
+  "version": "0.1.0",
+  "description": "a cool breathing and hue-shifting cursor",
   "keywords": [
+    "cool",
     "cursor",
-    "colorful",
-    "theme"
+    "rainbow",
+    "colored",
+    "theme",
+    "hue"
   ],
-  "repository": "https://github.com/tanukiti1987/colorful-cursor",
+  "repository": "https://github.com/almska/coolsor",
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"

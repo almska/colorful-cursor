@@ -1,0 +1,23 @@
+@import "ui-variables";
+
+.pulse-on {
+  transition: opacity 720ms ease-in-out;
+  opacity: 1;
+  border-left : 2px solid #fff;
+}
+
+.pulse-off {
+  opacity: 0.5;
+  visibility: visible !important;
+}
+
+atom-text-editor.is-focused {
+  .cursors {
+    & > .cursor {
+      .pulse-on;
+    }
+    &.blink-off > .cursor {
+      .pulse-off;
+    }
+  }
+}
