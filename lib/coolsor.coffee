@@ -1,33 +1,30 @@
 class Coolsor
   activate: (state) ->
+    wrap = (t) -> if t < 0 then 1 + t else if t > 1 then t % 1 else t
     HUEJUMP = 0.15420
     FPS = 24
     COOLRATE = (1 / FPS) * 1.666
     CYCLERATE = (1 / FPS) * 0.1
     PRESSFORCE = 0.314
-
     TIME = 0
     PRESS = 0
-    atom.config.coolsor = {time : 0, press : 0}
-    config = atom.config.coolsor
-    wrap = (t) -> t - Math.floor t
     setInterval(
       (() ->
         view = atom.views.getView( atom.workspace.getActiveTextEditor() )
         if view?
-          config.press = Math.max(config.press - COOLRATE, 0) if config.press > 0
-          config.time = wrap(config.time + CYCLERATE + 0.1 * config.press)
-          c = "hsla(#{config.time * 360}, #{60 + 20 * config.press}%, #{50 + 10 * config.press}%, #{1 - config.press * 0.3})"
-          t = wrap (config.time + 0.5)
-          s = "hsl(#{t * 360}, #{100}%, #{50 + 50 * config.press}%)"
+          PRESS = Math.max(PRESS - COOLRATE, 0) if PRESS > 0
+          TIME = wrap(TIME + CYCLERATE + 0.1 * PRESS)
+          c = "hsla(#{TIME * 360}, #{60 + 20 * PRESS}%, #{50 + 10 * PRESS}%, #{1 - PRESS * 0.3})"
+          t = wrap (TIME - 0.2)
+          s = "hsl(#{t * 360}, #{100}%, #{50 + 50 * PRESS}%)"
           cs = view.querySelector('.cursors .cursor')
           if cs?
             cs.style.borderColor = c
             cs.style.boxShadow = "-4px 0 10px -1px " + s
-            cs.style.borderLeftWidth = "#{2 +  6 * config.press}px"
+            cs.style.borderLeftWidth = "#{2 +  6 * PRESS}px"
           view.onkeydown = (e) ->
-            config.time = wrap(config.time + HUEJUMP)
-            config.press = Math.min(1, config.press + PRESSFORCE)
+            TIME = wrap(TIME + HUEJUMP)
+            PRESS = Math.min(1, PRESS + PRESSFORCE)
       ), (1000 / FPS)
     )
 module.exports = new Coolsor()
